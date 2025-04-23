@@ -61,7 +61,7 @@ export default function Login() {
     <div className="min-h-screen flex bg-white">
       {/* Left Section - Illustration */}
       <div className="w-1/2 bg-blue-600 relative overflow-hidden">
-        {/* Logo - Reduced size */}
+        {/* Logo */}
         <div className="absolute top-6 left-6 flex items-center text-white">
           <svg className="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none">
             <path
@@ -72,29 +72,18 @@ export default function Login() {
           <span className="text-lg font-semibold">medexplorer</span>
         </div>
 
+        {/* Medical Illustration */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <img 
+            src="/undraw_medicine_hqqg.svg" 
+            alt="Medical illustration" 
+            className="w-4/5 h-auto"
+          />
+        </div>
+
         {/* Background Design */}
         <div className="absolute bottom-0 left-0 right-0">
           <div className="h-64 bg-blue-700 rounded-tr-[100px]"></div>
-        </div>
-
-        {/* Doctor Illustration - Reduced size */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <div className="relative">
-            <img 
-              src="/doctor-illustration.svg" 
-              alt="Doctor illustration" 
-              className="w-72 h-72" // Reduced from w-96 h-96
-            />
-            {/* Floating Pills - Reduced size */}
-            <div className="absolute top-0 right-0 w-24 h-24"> {/* Reduced from w-32 h-32 */}
-              <div className="absolute animate-float">
-                <div className="w-6 h-2 bg-blue-400/30 rounded-full transform rotate-45" /> {/* Reduced from w-8 h-3 */}
-              </div>
-              <div className="absolute top-8 left-6 animate-float-delayed"> {/* Adjusted positioning */}
-                <div className="w-6 h-2 bg-blue-400/30 rounded-full transform -rotate-45" /> {/* Reduced from w-8 h-3 */}
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -158,6 +147,7 @@ export default function Login() {
     </div>
   );
 }
+
 
 
 

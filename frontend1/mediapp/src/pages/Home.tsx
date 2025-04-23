@@ -52,7 +52,7 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-white shadow-sm z-50">
-        <div className="container mx-auto px-4">
+        <div className="max-w-full px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
               <HeartPulse className="h-8 w-8 text-blue-600" />
@@ -75,8 +75,8 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-12 px-4">
-        <div className="container mx-auto">
+      <section className="pt-24 pb-12">
+        <div className="max-w-full px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col md:flex-row items-center justify-between">
             <div className="md:w-1/2 mb-8 md:mb-0">
               <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -95,11 +95,11 @@ export default function Home() {
                 </Link>
               </div>
             </div>
-            <div className="md:w-1/2">
+            <div className="md:w-1/2 flex justify-center items-center">
               <img 
-                src="/assets/hero-medical.png" 
-                alt="Medical Dashboard" 
-                className="w-full h-auto rounded-lg shadow-lg"
+                src="/undraw_medicine_hqqg.svg" 
+                alt="Medical Illustration" 
+                className="w-full max-w-lg h-auto"
               />
             </div>
           </div>
@@ -108,7 +108,7 @@ export default function Home() {
 
       {/* Features Section */}
       <section id="features" className="py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
+        <div className="max-w-full px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">
             Comprehensive Healthcare Features
           </h2>
@@ -131,7 +131,7 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="py-16 bg-blue-600">
-        <div className="container mx-auto px-4 text-center">
+        <div className="max-w-full px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-6">
             Ready to Transform Your Healthcare Experience?
           </h2>
@@ -148,7 +148,7 @@ export default function Home() {
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-12">
-        <div className="container mx-auto px-4">
+        <div className="max-w-full px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <h3 className="text-lg font-semibold mb-4">MediApp</h3>
@@ -184,5 +184,7 @@ export default function Home() {
     </div>
   );
 }
+
+
 
 

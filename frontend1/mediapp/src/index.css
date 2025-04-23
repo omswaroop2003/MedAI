@@ -70,35 +70,22 @@ button:focus-visible {
 }
 
 @keyframes blob {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
+  0% {
+    transform: translate(0px, 0px) scale(1);
   }
-  25% {
-    transform: translate(20px, -50px) scale(1.1);
+  33% {
+    transform: translate(30px, -50px) scale(1.1);
   }
-  50% {
+  66% {
     transform: translate(-20px, 20px) scale(0.9);
   }
-  75% {
-    transform: translate(-40px, -20px) scale(1.1);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
+  100% {
+    transform: translate(0px, 0px) scale(1);
   }
 }
 
 .animate-blob {
-  animation: blob 10s infinite;
-}
-
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+  animation: blob 7s infinite;
 }
 
 .animation-delay-2000 {
@@ -107,6 +94,46 @@ button:focus-visible {
 
 .animation-delay-4000 {
   animation-delay: 4s;
+}
+
+.pattern-grid {
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234299e1' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Add these styles to ensure dropdown text is visible */
+select {
+  color: #1a202c; /* dark gray */
+  background-color: white;
+}
+
+select option {
+  color: #1a202c;
+  background-color: white;
+}
+
+/* Style only select elements, not all inputs */
+select.w-full {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+}
+
+/* Remove default dropdown arrow in IE10+ */
+select::-ms-expand {
+  display: none;
+}
+
+/* Ensure proper text colors for select and options */
+select, select option {
+  color: #1a202c;
+  background-color: white;
+}
+
+/* Remove default dropdown arrow in IE10+ */
+select::-ms-expand {
+  display: none;
 }
 
 
