@@ -60,8 +60,27 @@ export default function Signup() {
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center relative">
+      {/* Back Button - Updated styling */}
+      <button 
+        onClick={() => navigate('/')}
+        className="absolute top-4 left-4 z-50 flex items-center px-4 py-2 text-gray-600 hover:text-gray-900 bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200"
+      >
+        <svg 
+          className="w-5 h-5 mr-2" 
+          fill="none" 
+          strokeLinecap="round" 
+          strokeLinejoin="round" 
+          strokeWidth="2" 
+          viewBox="0 0 24 24" 
+          stroke="currentColor"
+        >
+          <path d="M15 19l-7-7 7-7" />
+        </svg>
+        Back to Home
+      </button>
+
       {/* Background Pattern */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 overflow-hidden z-0">
         {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-cyan-50"></div>
         
@@ -74,8 +93,8 @@ export default function Signup() {
         <div className="absolute inset-0 opacity-[0.03] pattern-grid pattern-blue-500 pattern-size-4 pattern-offset-2"></div>
       </div>
 
-      {/* Main Content */}
-      <div className="relative bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-xl w-full max-w-md border border-gray-200">
+      {/* Main Content - added higher z-index */}
+      <div className="relative z-10 bg-white/80 backdrop-blur-sm p-8 rounded-lg shadow-xl w-full max-w-md border border-gray-200 mx-4">
         {/* Header Section */}
         <div className="flex justify-between items-center mb-8 border-b pb-4">
           <div className="flex items-center space-x-2">
@@ -133,7 +152,7 @@ export default function Signup() {
               value={formData.fullName}
               onChange={handleChange}
               placeholder="Full Name"
-              className="w-full px-4 py-2 bg-white/50 backdrop-blur-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              className="w-full px-4 py-2 bg-white/50 backdrop-blur-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-500"
               required
             />
           </div>
@@ -144,7 +163,7 @@ export default function Signup() {
               value={formData.email}
               onChange={handleChange}
               placeholder="Email"
-              className="w-full px-4 py-2 bg-white/50 backdrop-blur-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              className="w-full px-4 py-2 bg-white/50 backdrop-blur-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-500"
               required
             />
           </div>
@@ -155,7 +174,7 @@ export default function Signup() {
               value={formData.phoneNumber}
               onChange={handleChange}
               placeholder="Phone Number"
-              className="w-full px-4 py-2 bg-white/50 backdrop-blur-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              className="w-full px-4 py-2 bg-white/50 backdrop-blur-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-500"
               required
             />
           </div>
@@ -166,7 +185,7 @@ export default function Signup() {
               value={formData.password}
               onChange={handleChange}
               placeholder="Password"
-              className="w-full px-4 py-2 bg-white/50 backdrop-blur-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              className="w-full px-4 py-2 bg-white/50 backdrop-blur-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-500"
               required
             />
           </div>
@@ -177,7 +196,7 @@ export default function Signup() {
               value={formData.confirmPassword}
               onChange={handleChange}
               placeholder="Confirm Password"
-              className="w-full px-4 py-2 bg-white/50 backdrop-blur-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+              className="w-full px-4 py-2 bg-white/50 backdrop-blur-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all text-gray-900 placeholder-gray-500"
               required
             />
           </div>
@@ -187,11 +206,11 @@ export default function Signup() {
               name="userType"
               value={formData.userType}
               onChange={handleChange}
-              className="w-full px-4 py-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all appearance-none cursor-pointer relative"
+              className="w-full px-4 py-2 bg-white/50 backdrop-blur-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all appearance-none cursor-pointer relative text-gray-900"
               required
             >
-              <option value="patient" className="text-gray-900">Patient</option>
-              <option value="doctor" className="text-gray-900">Doctor</option>
+              <option value="patient">Patient</option>
+              <option value="doctor">Doctor</option>
             </select>
             <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
               <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
