@@ -10,6 +10,13 @@ import {
   FileText, // Added for Reports icon
 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { api } from '../config/api';
+import ChatMessage from '../components/ChatMessage';
+
+interface Message {
+  text: string;
+  sender: 'user' | 'ai';
+}
 
 const Sidebar = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (open: boolean) => void }) => {
   const navigate = useNavigate();
@@ -84,7 +91,40 @@ const Sidebar = ({ isOpen, setIsOpen }: { isOpen: boolean; setIsOpen: (open: boo
 export default function PatientDashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('chats');
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const user = JSON.parse(localStorage.getItem('user') || '{}');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim() || isLoading) return;
+
+    const userMessage = input.trim();
+    setInput('');
+    setMessages(prev => [...prev, { text: userMessage, sender: 'user' }]);
+    setIsLoading(true);
+
+    try {
+      const data = await api.chat.send(userMessage);
+      
+      if (!data.response) {
+        throw new Error('No response received from the server');
+      }
+      
+      setMessages(prev => [...prev, { text: data.response, sender: 'ai' }]);
+    } catch (error) {
+      console.error('Chat error:', error);
+      setMessages(prev => [...prev, { 
+        text: error instanceof Error 
+          ? `Error: ${error.message}` 
+          : 'Sorry, I encountered an error. Please try again.',
+        sender: 'ai'
+      }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
@@ -127,10 +167,47 @@ export default function PatientDashboard() {
         {/* Content Area */}
         <div className="bg-white rounded-lg shadow-sm p-6">
           {activeTab === 'chats' && (
-            <div>
-              <h2 className="text-xl font-semibold mb-4">Your Conversations</h2>
-              <p className="text-gray-600">Start a new chat with our AI Medical Assistant</p>
-              {/* Add chat interface here */}
+            <div className="h-[calc(100vh-250px)] flex flex-col">
+              <h2 className="text-xl font-semibold mb-4">Chat with AI Medical Assistant</h2>
+              
+              {/* Chat Messages Container */}
+              <div className="flex-1 overflow-y-auto mb-4 space-y-4 p-4 border rounded-lg">
+                {messages.map((message, index) => (
+                  <ChatMessage
+                    key={index}
+                    text={message.text}
+                    sender={message.sender}
+                  />
+                ))}
+                {isLoading && (
+                  <div className="flex items-center space-x-2 p-4">
+                    <div className="animate-bounce h-2 w-2 bg-gray-400 rounded-full"></div>
+                    <div className="animate-bounce h-2 w-2 bg-gray-400 rounded-full" style={{ animationDelay: '0.2s' }}></div>
+                    <div className="animate-bounce h-2 w-2 bg-gray-400 rounded-full" style={{ animationDelay: '0.4s' }}></div>
+                  </div>
+                )}
+              </div>
+
+              {/* Chat Input Form */}
+              <form onSubmit={handleSubmit} className="mt-4 flex gap-2">
+                <input
+                  type="text"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  placeholder="Type your message..."
+                  className="flex-1 rounded-lg border border-gray-300 p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <button
+                  type="submit"
+                  disabled={isLoading || !input.trim()}
+                  className={`px-4 py-2 rounded-lg bg-blue-600 text-white font-medium 
+                    ${isLoading || !input.trim() 
+                      ? 'opacity-50 cursor-not-allowed' 
+                      : 'hover:bg-blue-700 active:bg-blue-800'}`}
+                >
+                  Send
+                </button>
+              </form>
             </div>
           )}
           
